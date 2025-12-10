@@ -1,6 +1,37 @@
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  {%- if section.settings.announcement_text_color != blank -%}
+    /* Custom announcement bar text color */
+    #shopify-section-{{ section.id }} .announcement-bar,
+    #shopify-section-{{ section.id }} .announcement-bar__message,
+    #shopify-section-{{ section.id }} .announcement-bar__link,
+    #shopify-section-{{ section.id }} .announcement-bar a,
+    #shopify-section-{{ section.id }} .announcement-bar span,
+    #shopify-section-{{ section.id }} .utility-bar {
+      color: {{ section.settings.announcement_text_color }} !important;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar svg,
+    #shopify-section-{{ section.id }} .icon-arrow {
+      fill: {{ section.settings.announcement_text_color }} !important;
+    }
+  {%- endif -%}
+
+  {%- if section.settings.transparent_announcement -%}
+    /* Transparent announcement bar background */
+    #shopify-section-{{ section.id }} .utility-bar {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+
+    #shopify-section-{{ section.id }} .utility-bar--bottom-border {
+      border-bottom: none !important;
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
 {%- liquid
   assign social_icons = true
   if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -192,7 +223,20 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
-    },  
+    },
+    {
+      "type": "color",
+      "id": "announcement_text_color",
+      "label": "Announcement bar text color",
+      "info": "Customize the color of announcement bar text. Useful when announcement bar overlays on images."
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_announcement",
+      "default": false,
+      "label": "Transparent announcement bar background",
+      "info": "Makes the announcement bar background transparent. Useful for overlaying on banners or images."
+    },
     {
       "type": "checkbox",
       "id": "show_line_separator",

@@ -98,6 +98,107 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- if section.settings.header_text_color != blank -%}
+    /* Custom header text and icon color */
+    #shopify-section-{{ section.id }} .header__heading-link,
+    #shopify-section-{{ section.id }} .header__heading,
+    #shopify-section-{{ section.id }} .header__heading-link .h2,
+    #shopify-section-{{ section.id }} .header__menu-item,
+    #shopify-section-{{ section.id }} .list-menu__item,
+    #shopify-section-{{ section.id }} .header__icon,
+    #shopify-section-{{ section.id }} .header__icon svg,
+    #shopify-section-{{ section.id }} .svg-wrapper,
+    #shopify-section-{{ section.id }} .header a,
+    #shopify-section-{{ section.id }} .header span:not(.visually-hidden),
+    #shopify-section-{{ section.id }} .cart-count-bubble {
+      color: {{ section.settings.header_text_color }} !important;
+    }
+
+    #shopify-section-{{ section.id }} .icon-search,
+    #shopify-section-{{ section.id }} .icon-cart,
+    #shopify-section-{{ section.id }} .icon-cart-empty,
+    #shopify-section-{{ section.id }} .icon-account {
+      fill: {{ section.settings.header_text_color }} !important;
+      stroke: {{ section.settings.header_text_color }} !important;
+    }
+
+    #shopify-section-{{ section.id }} .cart-count-bubble {
+      background-color: {{ section.settings.header_text_color }} !important;
+      color: {{ section.settings.color_scheme | default: 'scheme-1' }} !important;
+    }
+  {%- endif -%}
+
+  {%- if section.settings.transparent_header -%}
+    /* Transparent header background */
+    #shopify-section-{{ section.id }} .header-wrapper {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+
+    #shopify-section-{{ section.id }} .header-wrapper--border-bottom {
+      border-bottom: none !important;
+    }
+
+    /* Position header group absolutely to overlay on content */
+    .shopify-section-group-header-group {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 10;
+    }
+
+    /* Keep header section positioned relatively within the group */
+    .shopify-section-group-header-group .section-header {
+      position: relative;
+      margin-bottom: 0 !important;
+      padding-top: 20px;
+    }
+
+    /* Make first section extend behind header */
+    #MainContent > .shopify-section:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+  {%- endif -%}
+
+  /* Mobile menu customization */
+  #shopify-section-{{ section.id }} .menu-drawer {
+    --mobile-menu-image-radius: {{ section.settings.mobile_menu_image_radius }}px;
+  }
+
+  {%- if section.settings.show_mobile_menu_dividers -%}
+    #shopify-section-{{ section.id }} .menu-drawer__menu > li:not(:last-child) {
+      border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+    }
+  {%- endif -%}
+
+  {%- unless section.settings.enable_mobile_accordion -%}
+    /* Flatten menu when accordion is disabled */
+    #shopify-section-{{ section.id }} .menu-drawer details {
+      pointer-events: none;
+    }
+
+    #shopify-section-{{ section.id }} .menu-drawer details > summary .svg-wrapper {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .menu-drawer details[open] > div {
+      display: block;
+      position: static;
+      visibility: visible;
+      transform: none;
+    }
+  {%- endunless -%}
+
+  {%- if section.settings.mobile_accordion_expand_first and section.settings.enable_mobile_accordion -%}
+    /* Expand first accordion item by default */
+    #shopify-section-{{ section.id }} .menu-drawer__menu > li:first-child > details {
+      open: true;
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -570,6 +671,13 @@
       "label": "t:sections.header.settings.show_line_separator.label"
     },
     {
+      "type": "checkbox",
+      "id": "transparent_header",
+      "default": false,
+      "label": "Transparent header background",
+      "info": "Makes the header background transparent. Useful for overlaying header on banners or images."
+    },
+    {
       "type": "header",
       "content": "t:sections.header.settings.header__1.content"
     },
@@ -584,6 +692,48 @@
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header text and icon color",
+      "info": "Customize the color of header text, logo, and icons. Useful when header overlays on images."
+    },
+    {
+      "type": "header",
+      "content": "Mobile menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_accordion",
+      "default": true,
+      "label": "Enable accordion in mobile menu",
+      "info": "Collapse menu items with children into accordions for easier navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_accordion_expand_first",
+      "default": false,
+      "label": "Expand first accordion by default",
+      "info": "Automatically open the first menu item with children on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_menu_dividers",
+      "default": true,
+      "label": "Show dividers between menu items",
+      "info": "Add separator lines between menu items in mobile drawer"
+    },
+    {
+      "type": "range",
+      "id": "mobile_menu_image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Menu image corner radius",
+      "default": 8,
+      "info": "Round the corners of images in mobile menu (if using image-based menu style)"
     },
     {
       "type": "header",
