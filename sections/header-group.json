@@ -31,7 +31,7 @@
         "color_scheme": "scheme-1",
         "announcement_text_color": "",
         "transparent_announcement": false,
-        "show_line_separator": true,
+        "show_line_separator": false,
         "show_social": false,
         "enable_country_selector": false,
         "enable_language_selector": false
