@@ -305,6 +305,7 @@
 .card__heading {
   margin-top: 0;
   margin-bottom: 0;
+  padding-left: 1.5rem;
 }
 
 .card__heading:last-child {
