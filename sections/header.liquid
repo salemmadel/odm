@@ -141,8 +141,8 @@
     }
 
     /* Position header group absolutely to overlay on content */
-    .shopify-section-group-header-group:has(#shopify-section-{{ section.id }}) {
-      position: absolute;
+    .shopify-section-group-header-group {
+      position: absolute !important;
       top: 0;
       left: 0;
       right: 0;
@@ -151,17 +151,17 @@
     }
 
     /* Make announcement bar transparent when header is transparent */
-    .shopify-section-group-header-group:has(#shopify-section-{{ section.id }}) .utility-bar {
+    .shopify-section-group-header-group .utility-bar {
       background-color: transparent !important;
       background: transparent !important;
     }
 
-    .shopify-section-group-header-group:has(#shopify-section-{{ section.id }}) .utility-bar--bottom-border {
+    .shopify-section-group-header-group .utility-bar--bottom-border {
       border-bottom: none !important;
     }
 
     /* Remove margin from section-header */
-    .shopify-section-group-header-group:has(#shopify-section-{{ section.id }}) .section-header {
+    .shopify-section-group-header-group .section-header {
       margin-bottom: 0 !important;
     }
 
