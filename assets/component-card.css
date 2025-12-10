@@ -461,6 +461,10 @@
   overflow: hidden;
 }
 
+.card__information {
+  background-color: #f0f0f0; /* light grey */
+}
+
 .card-information > * + * {
   margin-top: 0.5rem;
 }
