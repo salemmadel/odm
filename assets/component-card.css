@@ -486,6 +486,11 @@
   margin-top: 0.4rem;
 }
 
+/* Remove background from product card image area */
+.product-card-wrapper .card__inner {
+  background: transparent !important;
+}
+
 /* Grey background for product cards */
 .product-card-wrapper .card__content {
   background-color: #f5f5f5;
