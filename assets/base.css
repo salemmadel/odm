@@ -2360,6 +2360,17 @@ input[type='checkbox'] {
   margin-bottom: 0 !important;
 }
 
+/* Make main content start behind header for banner overlay */
+#MainContent {
+  margin-top: 0;
+}
+
+/* First section should extend behind the header */
+.shopify-section:first-child {
+  padding-top: 0;
+  margin-top: 0;
+}
+
 .header {
   display: grid;
   grid-template-areas: 'left-icons heading icons';
