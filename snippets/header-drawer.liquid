@@ -24,7 +24,7 @@
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
-                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" {% if section.settings.mobile_accordion_expand_first and section.settings.enable_mobile_accordion and forloop.first %}open{% endif %}>
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
@@ -64,7 +64,7 @@
                                     {{ childlink.title | escape }}
                                   </a>
                                 {%- else -%}
-                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}" {% if section.settings.mobile_accordion_expand_first and section.settings.enable_mobile_accordion and forloop.first %}open{% endif %}>
                                     <summary
                                       id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                       class="menu-drawer__menu-item link link--text list-menu__item focus-inset"

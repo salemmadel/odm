@@ -140,6 +140,42 @@
       border-bottom: none !important;
     }
   {%- endif -%}
+
+  /* Mobile menu customization */
+  #shopify-section-{{ section.id }} .menu-drawer {
+    --mobile-menu-image-radius: {{ section.settings.mobile_menu_image_radius }}px;
+  }
+
+  {%- if section.settings.show_mobile_menu_dividers -%}
+    #shopify-section-{{ section.id }} .menu-drawer__menu > li:not(:last-child) {
+      border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+    }
+  {%- endif -%}
+
+  {%- unless section.settings.enable_mobile_accordion -%}
+    /* Flatten menu when accordion is disabled */
+    #shopify-section-{{ section.id }} .menu-drawer details {
+      pointer-events: none;
+    }
+
+    #shopify-section-{{ section.id }} .menu-drawer details > summary .svg-wrapper {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .menu-drawer details[open] > div {
+      display: block;
+      position: static;
+      visibility: visible;
+      transform: none;
+    }
+  {%- endunless -%}
+
+  {%- if section.settings.mobile_accordion_expand_first and section.settings.enable_mobile_accordion -%}
+    /* Expand first accordion item by default */
+    #shopify-section-{{ section.id }} .menu-drawer__menu > li:first-child > details {
+      open: true;
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -639,6 +675,42 @@
       "id": "header_text_color",
       "label": "Header text and icon color",
       "info": "Customize the color of header text, logo, and icons. Useful when header overlays on images."
+    },
+    {
+      "type": "header",
+      "content": "Mobile menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_accordion",
+      "default": true,
+      "label": "Enable accordion in mobile menu",
+      "info": "Collapse menu items with children into accordions for easier navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_accordion_expand_first",
+      "default": false,
+      "label": "Expand first accordion by default",
+      "info": "Automatically open the first menu item with children on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_menu_dividers",
+      "default": true,
+      "label": "Show dividers between menu items",
+      "info": "Add separator lines between menu items in mobile drawer"
+    },
+    {
+      "type": "range",
+      "id": "mobile_menu_image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Menu image corner radius",
+      "default": 8,
+      "info": "Round the corners of images in mobile menu (if using image-based menu style)"
     },
     {
       "type": "header",
