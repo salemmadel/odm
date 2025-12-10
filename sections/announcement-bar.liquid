@@ -18,6 +18,18 @@
       fill: {{ section.settings.announcement_text_color }} !important;
     }
   {%- endif -%}
+
+  {%- if section.settings.transparent_announcement -%}
+    /* Transparent announcement bar background */
+    #shopify-section-{{ section.id }} .utility-bar {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+
+    #shopify-section-{{ section.id }} .utility-bar--bottom-border {
+      border-bottom: none !important;
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -217,6 +229,13 @@
       "id": "announcement_text_color",
       "label": "Announcement bar text color",
       "info": "Customize the color of announcement bar text. Useful when announcement bar overlays on images."
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_announcement",
+      "default": false,
+      "label": "Transparent announcement bar background",
+      "info": "Makes the announcement bar background transparent. Useful for overlaying on banners or images."
     },
     {
       "type": "checkbox",

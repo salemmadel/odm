@@ -128,6 +128,18 @@
       color: {{ section.settings.color_scheme | default: 'scheme-1' }} !important;
     }
   {%- endif -%}
+
+  {%- if section.settings.transparent_header -%}
+    /* Transparent header background */
+    #shopify-section-{{ section.id }} .header-wrapper {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+
+    #shopify-section-{{ section.id }} .header-wrapper--border-bottom {
+      border-bottom: none !important;
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -598,6 +610,13 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_header",
+      "default": false,
+      "label": "Transparent header background",
+      "info": "Makes the header background transparent. Useful for overlaying header on banners or images."
     },
     {
       "type": "header",
