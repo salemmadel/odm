@@ -98,6 +98,36 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- if section.settings.header_text_color != blank -%}
+    /* Custom header text and icon color */
+    #shopify-section-{{ section.id }} .header__heading-link,
+    #shopify-section-{{ section.id }} .header__heading,
+    #shopify-section-{{ section.id }} .header__heading-link .h2,
+    #shopify-section-{{ section.id }} .header__menu-item,
+    #shopify-section-{{ section.id }} .list-menu__item,
+    #shopify-section-{{ section.id }} .header__icon,
+    #shopify-section-{{ section.id }} .header__icon svg,
+    #shopify-section-{{ section.id }} .svg-wrapper,
+    #shopify-section-{{ section.id }} .header a,
+    #shopify-section-{{ section.id }} .header span:not(.visually-hidden),
+    #shopify-section-{{ section.id }} .cart-count-bubble {
+      color: {{ section.settings.header_text_color }} !important;
+    }
+
+    #shopify-section-{{ section.id }} .icon-search,
+    #shopify-section-{{ section.id }} .icon-cart,
+    #shopify-section-{{ section.id }} .icon-cart-empty,
+    #shopify-section-{{ section.id }} .icon-account {
+      fill: {{ section.settings.header_text_color }} !important;
+      stroke: {{ section.settings.header_text_color }} !important;
+    }
+
+    #shopify-section-{{ section.id }} .cart-count-bubble {
+      background-color: {{ section.settings.header_text_color }} !important;
+      color: {{ section.settings.color_scheme | default: 'scheme-1' }} !important;
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -584,6 +614,12 @@
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header text and icon color",
+      "info": "Customize the color of header text, logo, and icons. Useful when header overlays on images."
     },
     {
       "type": "header",
