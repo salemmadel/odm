@@ -2092,12 +2092,10 @@ input[type='checkbox'] {
 /* utility-bar */
 .utility-bar {
   height: 100%;
-  background-color: transparent !important;
-  background: transparent !important;
 }
 
 .utility-bar--bottom-border {
-  border-bottom: none;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 @media screen and (min-width: 990px) {
@@ -2334,17 +2332,7 @@ input[type='checkbox'] {
 }
 
 .shopify-section-group-header-group {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-/* Make all sections within header group transparent */
-.shopify-section-group-header-group .shopify-section {
-  background: transparent !important;
+  z-index: 4;
 }
 
 .section-header ~ .shopify-section-group-header-group {
@@ -2355,27 +2343,11 @@ input[type='checkbox'] {
 .header-wrapper {
   display: block;
   position: relative;
-  background-color: transparent;
+  background-color: rgb(var(--color-background));
 }
 
 .header-wrapper--border-bottom {
-  border-bottom: none;
-}
-
-/* Remove margin from section-header for overlay effect */
-.section-header {
-  margin-bottom: 0 !important;
-}
-
-/* Make main content start behind header for banner overlay */
-#MainContent {
-  margin-top: 0;
-}
-
-/* First section should extend behind the header */
-.shopify-section:first-child {
-  padding-top: 0;
-  margin-top: 0;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 .header {
