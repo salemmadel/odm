@@ -486,6 +486,16 @@
   margin-top: 0.4rem;
 }
 
+/* Grey background for product cards */
+.product-card-wrapper .card__content {
+  background-color: #f5f5f5;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.product-card-wrapper.card--horizontal .card__content {
+  border-radius: var(--border-radius);
+}
+
 /* Specificity needed due to the changes below */
 .card-information
   > *:not(.visually-hidden:first-child)
