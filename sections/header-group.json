@@ -46,7 +46,7 @@
         "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
-        "transparent_header": true,
+        "transparent_header": false,
         "color_scheme": "scheme-4",
         "menu_color_scheme": "scheme-1",
         "header_text_color": "#ffffff",
