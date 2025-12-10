@@ -138,6 +138,7 @@
   grid-row-start: 2;
   padding-top: 1.3rem;
   padding-bottom: 1rem;
+  background-color: #f5f5f5;
 }
 
 .card:not(.ratio) > .card__content {
