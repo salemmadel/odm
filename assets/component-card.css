@@ -136,7 +136,8 @@
 
 .card__information {
   grid-row-start: 2;
-  padding: 1.3rem 1rem;
+  padding-top: 1.3rem;
+  padding-bottom: 1rem;
 }
 
 .card:not(.ratio) > .card__content {
@@ -265,7 +266,9 @@
 
 @media screen and (min-width: 750px) {
   .card__information {
-    padding: 1.3rem 1rem;
+    padding-bottom: 1.7rem;
+    padding-top: 1.7rem;
+  }
 }
 
 .card__badge {
@@ -457,10 +460,6 @@
   white-space: nowrap;
   transition: transform var(--duration-short) ease;
   overflow: hidden;
-}
-
-.card__information {
-  background-color: #f0f0f0; /* light grey */
 }
 
 .card-information > * + * {
