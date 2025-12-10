@@ -487,7 +487,9 @@
 }
 
 /* Remove background from product card image area */
-.product-card-wrapper .card__inner {
+.product-card-wrapper .card__inner,
+.product-card-wrapper .card__media,
+.product-card-wrapper .media {
   background: transparent !important;
 }
 
